@@ -50,7 +50,7 @@ public class SolrDataImportProperties {
     public void loadProperties(boolean force) {
         try {
             SolrResourceLoader loader = new SolrResourceLoader(null);
-            logger.info("Instance dir = " + loader.getInstanceDir());
+            //logger.info("Instance dir = " + loader.getInstanceDir());
 
             String configDir = loader.getConfigDir();
             configDir = SolrResourceLoader.normalizeDir(configDir);
@@ -62,6 +62,7 @@ public class SolrDataImportProperties {
                 FileInputStream fis = new FileInputStream(dataImportProperties);
                 properties.load(fis);
             }
+			loader.close();
         } catch(FileNotFoundException fnfe) {
             logger.error("Error locating DataImportScheduler dataimport.properties file", fnfe);
         } catch(IOException ioe) {
